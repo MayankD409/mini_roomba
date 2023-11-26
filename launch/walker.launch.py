@@ -25,18 +25,5 @@ def generate_launch_description():
         remappings=[],
     )
     
-    ros2_bag_start = Node(
-        package='rosbag2',
-        executable='record',
-        name='rosbag_record',
-        output='screen',
-        arguments=[
-            '--all',
-            '--exclude', '/camera/*',  # Exclude camera topics
-            '--output', 'your_bag_file.bag'
-        ],
-        condition=IfCondition(LaunchConfiguration('record_bag'))
-    )
-    
     return LaunchDescription([record_bag, roomba_node])
     
